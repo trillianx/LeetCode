@@ -17,9 +17,19 @@ An array is a collection of items. The items by themselves can have different da
     *   **Fixed size**: Arrays have fixed size, unless we use **dynamic arrays**. Python mostly uses dynamic arrays which are also slower and take more space. 
     *   **Costly inserts and deletes**: When you insert or delete an element from an array, the elements have to be moved to fill the empty space. This takes $O(n)$ time in the worst case. 
 
-The table below lists some important methods that are used in arrays
+The table below lists some important methods that are used in arrays. 
 
-### `insert(index, element)`
+| Method      | Time Complexity |
+| ----------- | --------------- |
+| `.insert()` | $O(n)$          |
+| `.remove()` | $O(n)$          |
+| `.pop()`    | $O(1)$          |
+| `.append()` | $O(1)$          |
+| `.extend()` | $O(1)$          |
+
+
+
+### `.insert(index, element)`
 
 The `insert()` method is used to insert an item at a given position. The syntax is: 
 
@@ -91,4 +101,83 @@ arr.pop(1)
 arr.pop()
 ```
 
-### `.append(element)`
+### `.append(item)`
+
+This method adds an item to the end of the array. The item can be a single element or it can also be a list or another data structure. This is done as follows: 
+
+```python
+arr = ['Alexis', 'Josephine', 'Ella']
+arr.append('Rachel')
+
+print(arr)
+['Alexis', 'Josephine', 'Ella', 'Rachel']
+```
+
+Another method that can also be used to add an item at the end of an array is `.extend()`. The `.extend()` adds an **iterable**, that is a list, tuple or string to a list. 
+
+```python
+# Using a list
+arr = ['Alexis', 'Josephine', 'Ella']
+arr.extend(['Rachel', 'Lisa'])
+
+print(arr)
+['Alexis', 'Josephine', 'Ella', 'Rachel', 'Lisa']
+
+# Using a tuple
+arr.extend((32, 48, 77))
+
+print(arr)
+['Alexis', 'Josephine', 'Ella', 'Rachel', 'Lisa', 32, 48, 77]
+
+# Using a set
+arr.extend({1, 5, 7})
+
+print(arr)
+['Alexis', 'Josephine', 'Ella', 'Rachel', 'Lisa', 32, 48, 77, 1, 5, 7]
+```
+
+However, adding a string can cause a problem: 
+
+```python
+arr = ['Lisa', 'Jamie']
+arr.extend('Lux')
+
+print(arr)
+['Lisa', 'Jamie', 'L', 'u', 'x']
+```
+
+### Challenge 1:Max Consecutive Ones
+
+Given a binary array, find the maximum number of consecutive 1s in the array. 
+
+![image-20201014145237159](Arrays.assets/image-20201014145237159.png)
+
+**Hint:** You need to think about two things as far as any window is concerned. One is the starting point for the window. How do you detect that a new window of 1s has started? The next part is detecting the ending point for this window. How do you detect the ending point for an existing window? If you figure these two things out, you will be able to detect the windows of consecutive ones. All that remains afterward is to find the longest such window and return the size.
+
+### Challenge 2: Find Numbers with Even Number of Digits
+
+Given 
+
+
+
+## Answers to Challenge Questions
+
+### Challenge 1
+
+```python
+def find_consecutive(arr):
+    count = 0
+    max_con = 0
+    for i in arr:
+        if i == 1:
+            count += 1
+        elif i == 0 and count > max_con:
+            max_con = count
+            count = 0
+        else:
+            count = 0
+    if count > max_con:
+        max_con = count
+    return max_con
+```
+
