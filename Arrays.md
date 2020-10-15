@@ -156,7 +156,15 @@ Given a binary array, find the maximum number of consecutive 1s in the array.
 
 ### Challenge 2: Find Numbers with Even Number of Digits
 
-Given 
+Given an array of integers, return how many of them contain an even number of digits. 
+
+<img src="Arrays.assets/image-20201014152051645.png" alt="image-20201014152051645" style="zoom:50%;" />
+
+### Challenge 3: Squares of a Sorted Array
+
+Given an array of integers `A` sorted in non-decreasing order, return an array of the squares of each number, also in sorted non-decreasing order. 
+
+<img src="Arrays.assets/image-20201014152940906.png" alt="image-20201014152940906" style="zoom:50%;" />
 
 
 
@@ -179,5 +187,27 @@ def find_consecutive(arr):
     if count > max_con:
         max_con = count
     return max_con
+```
+
+### Challenge 2
+
+```python
+def findDigits(arr):
+    count = 0
+    for i in arr:
+        if len(str(i)) % 2 == 0:
+            count += 1
+    return count
+
+# Another efficient way: 
+def findDigits(nums):
+	return len([num for num in nums if len(str(num)) % 2 == 0])
+```
+
+### Challenge 3
+
+```python
+def sortedSequence(arr):
+    return sorted([a**2 for a in arr])
 ```
 
