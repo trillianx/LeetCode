@@ -166,6 +166,24 @@ Given an array of integers `A` sorted in non-decreasing order, return an array o
 
 <img src="Arrays.assets/image-20201014152940906.png" alt="image-20201014152940906" style="zoom:50%;" />
 
+### Challenge 4: 
+
+Given a fixed length array of integers, duplicate each occurrence of zero, shifting the remaining elements to the right. Note that the elements beyond the length of the original array are not written. Do the above modifications to the input array **in place**, do not return anything from your function
+
+<img src="Arrays.assets/image-20201015191101420.png" alt="image-20201015191101420" style="zoom:50%;" />
+
+### Challenge 5: Merge Sorted Array
+
+Given two sorted integer arrays, `num1` and `num2`, merge `num2` into `num1` as one sorted array. 
+
+
+
+
+
+
+
+
+
 
 
 ## Answers to Challenge Questions
@@ -210,4 +228,29 @@ def findDigits(nums):
 def sortedSequence(arr):
     return sorted([a**2 for a in arr])
 ```
+
+### [Challenge 4](https://leetcode.com/problems/duplicate-zeros/solution/)
+
+```python
+def duplicateZeros(arr):
+    n = len(arr)
+    index = 0
+    while index < n:
+        if arr[index] == 0:
+            arr.insert(index+1, 0)
+            arr.pop()
+            index+= 2
+        else:
+            index += 1
+    return None
+
+if __name__ == "__main__":
+    arr = [9,0,9,0,6,0,0,0,1,1,6,5,4,4,8,3,0,0,0]
+    # arr = [7,6,5,0,5,4,6]
+    print(arr)
+    duplicateZeros(arr)
+    print(arr)
+```
+
+>   Lesson learned: If you have to increase an index, make use of while loop
 
